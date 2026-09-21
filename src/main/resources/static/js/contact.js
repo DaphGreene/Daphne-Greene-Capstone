@@ -4,7 +4,7 @@ function getName() {
   var result = document.getElementById("result");
 
   if (name.length != 0) {
-    return (window.location.href = "./music.html");
+    return (window.location.href = "/music");
   } else {
     return alert("Name must not be empty! You fool!");
   }

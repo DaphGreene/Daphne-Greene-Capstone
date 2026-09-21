@@ -1,65 +1,144 @@
-# DATG Band App Beta
+# Daphne + The Glitches Band App
 
-This is the first version of the web application for the blues/psych/rock band **Daphne + The Glitches'**.
+A Java/Spring Boot coursework capstone built around Daphne + The Glitches.
 
-## Navbar
+The application explores a DATG-branded web experience with user registration, authentication, persistent profiles, tour-date management, and band-related content.
 
-Each page will include a navbar header that will offer different options, depending if the user is logged in or not.
-Base options are:
+Although this project predates my later ideas for a broader DATG companion app / Arcade ecosystem, some of its account and community-facing concepts became relevant to that later thinking. This repository should be understood as a student capstone and early web-application experiment, not as a finished version of that future product concept.
+
+## Built With
+
+- Java 17
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- Thymeleaf
+- MariaDB
+- HTML / CSS / JavaScript
+- Maven
+
+## Current Status
+
+Legacy coursework project, preserved and maintained as a portfolio piece.
+
+The current canonical version has been locally verified to:
+
+- build successfully with Java 17
+- start against MariaDB
+- register users
+- authenticate users
+- preserve profile-description changes across logout/login
+- create and persist tour-date data
+- return users to a previously requested protected page after login
+- serve the music route successfully
+
+The repository's Spring context-load test also passes.
+
+The direct-login fallback currently remains a small behavior under review and is separate from the verified saved-request login flow.
+
+## Local Setup
+
+### Requirements
+
+- Java 17
+- MariaDB
+- Maven wrapper included with the project
+
+### Database
+
+Create a MariaDB database named:
+
+`DATGUsers`
+
+Set the following environment variables before running the application:
+
+`MYSQL_USER`
+
+`MYSQL_PASSWORD`
+
+The repository does not require database credentials to be committed to source control.
+
+### Build
+
+`./mvnw package`
+
+### Run
+
+`./mvnw spring-boot:run`
+
+## Application Features
+
+### Navigation
+
+The application includes:
 
 - Home
 - Music
 - Tour
 - Contact
 - Login
-- Register
+- Registration
+- Profile access for authenticated users
+- Logout
 
-When a user is logged in the Login and Register options will be replaced with a welcome message to indicate the user is
-logged in, as well as a Logout button, and access to the Profile page will also be available.
+Navigation changes depending on authentication state.
 
-## Home (index)
+### Home
 
-This is the landing page for the application. It contains a carousel of recent photos and some basic info about the
-band.
+Landing page with basic band information and visual content.
 
-## Music
+### Music
 
-This page contains an iFrame for YouTube video of DATG single 'Outgoing Male'.
+DATG music content embedded within the application.
 
-## Tour
+### Tour
 
-This page will display a table including upcoming shows for the band with links to purchase tickets. The table will
-include:
+Displays tour-date information including:
 
-- City
-- Venue
-- Date
-- Ticket prices for pre-sale and day of show (DOS)
+- city
+- venue
+- date
+- advance ticket price
+- day-of-show ticket price
 
-When logged in, a user would be able to create new tour dates via the 'Create Date' button on the bottom of the page.
-These tour dates will be stored on a database table, and are editable and deletable via the Edit/Delete buttons that are
-also only viewable to logged in users.
+Authenticated users can create, edit, and delete tour-date records.
 
-## Tour_Date
+### Contact
 
-This is the page used to add new shows to the tour_date table, as well as edit any date that is already present when
-the 'Edit' button is clicked.
+Band contact form collecting:
 
-## Contact
+- name
+- email
+- message
 
-Form in order to contact the band, asking for a name, email, and message to be input.
+### Profile
 
-## Profile
+Authenticated users can access a persistent profile and update account-related information.
 
-Page that logged in users will see that can be used to update the description attached to their profile, as well as update their password.
+### Login
 
-## Login
+Existing users can authenticate with their username and password.
 
-This page will be used to login to a user account once one has already been created using the Registration page. The
-required fields to login are Username and Password.
+If authentication was triggered by an attempt to access a protected page, Spring Security can return the user to that requested page after login.
 
-## Registration
+### Registration
 
-This page will be used to register new users to the site. Users will be prompted to fill in their E-Mail, Username and
-Password in order to register as an official user of the site. On a successful Registration the user will be redirected
-to the Login page.
+New users can create an account using:
+
+- email
+- username
+- password
+
+Successful registration redirects the user to the login page.
+
+## Portfolio Context
+
+This repository is the canonical portfolio-facing version of the capstone.
+
+Other historical copies of the project may preserve earlier development history or coursework snapshots, but this repository represents the version intended for ongoing documentation and portfolio presentation.
+
+## Future Context
+
+Some ideas explored here, particularly user accounts, profiles, and a DATG-centered authenticated experience, overlap conceptually with later thinking around a possible DATG companion app / DATG Arcade ecosystem.
+
+That later product idea remains unresolved, and this capstone should not be treated as its final architecture or implementation.
